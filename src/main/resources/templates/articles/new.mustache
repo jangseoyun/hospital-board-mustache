@@ -12,33 +12,26 @@
     <link rel="stylesheet" href="/css/all-css.css">
 </head>
 <body>
+    {{>layouts/header}}
 
-    <div id="wrap">
-        {{! header, nav}}
-        {{>layouts/header}}
-        {{! header, nav}}
-
-        <div>
-            {{# id}}
-                <h1>{{id}} {{username}} Hello! </h1>
-            {{/ id}}
-            {{^ id}}
-                <h1>{{username}} Hello! </h1>
-            {{/ id}}
+    <form class="container" action="/articles/posts" method="post">
+        <div class="mb-3">
+            <label class="form-label">제목</label>
+            <!--- name 속성안에 Dto의 필드명을 써주면 된다 -->
+            <input type="text" class="form-control" name="title" value="">
         </div>
+        <div class="mb-3">
+            <label class="form-label">내용</label>
+            <!--- name 속성안에 Dto의 필드명을 써주면 된다 -->
+            <textarea class="form-control" rows="3" name="content"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <!--- 리다이렉트 전체 조회페이지로 이동 기능 a태그로 --->
+        <a href="/articles">back</a>
+    </form>
 
-        <ul class="list-group">
-            <li class="list-group-item">An item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
-            <li class="list-group-item">A fourth item</li>
-            <li class="list-group-item">And a fifth one</li>
-        </ul>
-
-        {{! footer}}
-        {{>layouts/footer}}
-        {{! footer}}
-    </div>
-
+    {{>layouts/footer}}
 </body>
 </html>
+
+
