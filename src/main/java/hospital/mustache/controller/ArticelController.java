@@ -1,6 +1,7 @@
 package hospital.mustache.controller;
 
 import hospital.mustache.domain.dto.ArticleDto;
+import hospital.mustache.domain.entity.Article;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ public class ArticelController {
     @PostMapping("/posts")
     public String createArticle(ArticleDto articleDto) {
         log.info(articleDto.toString());
+        Article article = articleDto.toEntity();
         return "";
     }
 }
