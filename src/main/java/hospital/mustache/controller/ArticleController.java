@@ -40,15 +40,15 @@ public class ArticleController {
 
     @GetMapping("/{id}")
     public String findContents(@PathVariable("id") Long id, Model model) {
-        log.info("controller find id 요청");
+        log.info("id:{}", id);
         Optional<Article> optArticle = articleRepository.findById(id);
         log.info("{}", optArticle);
-        if (!optArticle.isEmpty()) {
-            model.addAttribute("article", optArticle);
-            return "show";
-        } else {
+        if (optArticle.isEmpty()) {
             return "error";
         }
+
+        model.addAttribute("article", optArticle.get());
+        return "show";
 
     }
 
