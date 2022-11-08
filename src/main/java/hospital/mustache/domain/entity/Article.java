@@ -1,15 +1,13 @@
 package hospital.mustache.domain.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
+@ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@Table(name = "Article")
 public class Article {
 
     @Id
