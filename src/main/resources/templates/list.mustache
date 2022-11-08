@@ -1,6 +1,6 @@
+{{>layouts/header}}
 <div>
-    이 페이지는 리스트 페이지입니다.
-    <table class="table">
+    <table class="table table-striped">
         <thead>
         <tr>
             <th scope="col">id</th>
@@ -14,9 +14,10 @@
             <tr>
                 <th scope="row">{{id}}</th>
                 <td>{{title}}</td>
-                <td>@{{contents}}</td>
+                <td>{{contents}}</td>
             </tr>
         {{/articleList}}
         </tbody>
     </table>
 </div>
+{{>layouts/footer}}
