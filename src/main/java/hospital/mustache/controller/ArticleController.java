@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/articles")
 @RequiredArgsConstructor
 @Slf4j
-public class ArticelController {
+public class ArticleController {
 
     private final ArticleRepository articleRepository;
     @GetMapping(value = "/new")
