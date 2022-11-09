@@ -13,12 +13,17 @@
         {{#articleList}}
             <tr>
                 <th scope="row">{{id}}</th>
-                <td>{{title}}</td>
+                <td><a href="/articles/{{id}}">{{title}}</a></td>
                 <td>{{contents}}</td>
                 <td>
-                    <form action="/articels/"+{{id}} method="post">
+                    <form action="/articles/{{id}}/edit" method="get">
+                        <button type="submit" class="btn btn-outline-primary btn-sm">UPDATE</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/articles/{{id}}" method="post">
                         <input type="hidden" name="_method" value="DELETE"/>
-                        <button type="button" class="btn btn-outline-danger btn-sm">DELETE</button>
+                        <button type="submit" class="btn btn-outline-danger btn-sm">DELETE</button>
                     </form>
                 </td>
             </tr>
