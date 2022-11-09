@@ -68,7 +68,9 @@ public class ArticleController {
     //---------delete one---------------
     @DeleteMapping("/{id}")
     public String deleteOne(@PathVariable("id") Long id) {
-        return "";
+        log.info("delete 요청 : {}", id);
+        articleRepository.deleteById(id);
+        return "redirect:/articles/list";
     }
 
     //---------update one---------------

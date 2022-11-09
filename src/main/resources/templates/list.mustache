@@ -15,6 +15,12 @@
                 <th scope="row">{{id}}</th>
                 <td>{{title}}</td>
                 <td>{{contents}}</td>
+                <td>
+                    <form action="/articels/"+{{id}} method="post">
+                        <input type="hidden" name="_method" value="DELETE"/>
+                        <button type="button" class="btn btn-outline-danger btn-sm">DELETE</button>
+                    </form>
+                </td>
             </tr>
         {{/articleList}}
         </tbody>
