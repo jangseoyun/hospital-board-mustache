@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -66,7 +67,7 @@ public class ArticleController {
     }
 
     //---------delete one---------------
-    @DeleteMapping("/{id}")
+    @GetMapping("/{id}/delete")
     public String deleteOne(@PathVariable("id") Long id) {
         log.info("delete 요청 : {}", id);
         articleRepository.deleteById(id);
@@ -88,13 +89,12 @@ public class ArticleController {
     }
 
     //---------update--------------------
-    @PutMapping("/{id}/update")
-    public String edit(ArticleDto articleDto, Model model) {
+    @PostMapping("/{id}/update")
+    public String edit(@Validated ArticleDto articleDto, Model model) {
         log.info("article dto : {}", articleDto);
         Article article = articleDto.toEntityAll();
         Article update = articleRepository.save(article);
-        model.addAttribute("articleUpdateResult", update);
-        return "redirect:/articles/show";
+        return "redirect:/articles/list";
     }
 
 }
