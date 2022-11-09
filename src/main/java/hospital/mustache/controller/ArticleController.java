@@ -7,16 +7,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+@Slf4j
 @Controller
 @RequestMapping("/articles")
 @RequiredArgsConstructor
-@Slf4j
 public class ArticleController {
 
     private final ArticleRepository articleRepository;
@@ -55,7 +53,6 @@ public class ArticleController {
 
         model.addAttribute("article", optArticle.get());
         return "show";
-
     }
 
     //---------Select All---------------
@@ -90,10 +87,10 @@ public class ArticleController {
 
     //---------update--------------------
     @PostMapping("/{id}/update")
-    public String edit(@Validated ArticleDto articleDto, Model model) {
+    public String edit(ArticleDto articleDto, Model model) {
         log.info("article dto : {}", articleDto);
         Article article = articleDto.toEntityAll();
-        Article update = articleRepository.save(article);
+        articleRepository.save(article);
         return "redirect:/articles/list";
     }
 
