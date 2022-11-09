@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,16 +18,23 @@ import java.util.Optional;
 @Slf4j
 public class ArticleController {
 
-    //spring이 articleRepository 구현체를 DI (인터페이스 아님)
     private final ArticleRepository articleRepository;
 
+    //---------main---------------
+    @GetMapping("")
+    public String index() {
+        return "redirect:/articles/list";
+    }
+
+    //---------insert form---------------
     @GetMapping(value = "/new")
-    public String newArticleForm() {
+    public String addForm() {
         return "articles/new";
     }
 
+    //---------insert---------------
     @PostMapping("")
-    public String createArticle(ArticleDto articleDto) {
+    public String add(ArticleDto articleDto) {
         log.info(articleDto.toString());
         Article article = articleDto.toEntity();
         Article saveOne = articleRepository.save(article);
@@ -38,8 +42,9 @@ public class ArticleController {
         return String.format("redirect:/articles/%d", saveOne.getId());
     }
 
+    //---------select One---------------
     @GetMapping("/{id}")
-    public String findContents(@PathVariable("id") Long id, Model model) {
+    public String getContentsOne(@PathVariable("id") Long id, Model model) {
         log.info("id:{}", id);
         Optional<Article> optArticle = articleRepository.findById(id);
         log.info("{}", optArticle);
@@ -52,15 +57,24 @@ public class ArticleController {
 
     }
 
+    //---------Select All---------------
     @GetMapping("/list")
-    public String list(Model model) {
+    public String getListAll(Model model) {
         List<Article> articleList = articleRepository.findAll();
         model.addAttribute("articleList", articleList);
         return "list";
     }
 
-    @GetMapping("")
-    public String index() {
-        return "redirect:/articles/list";
+    //---------delete one---------------
+    @DeleteMapping("/{id}")
+    public String deleteOne(@PathVariable("id") Long id) {
+        return "";
     }
+
+    //---------update one---------------
+    @PutMapping("/{id}")
+    public String updateOne(@PathVariable("id") Long id) {
+        return "";
+    }
+
 }
