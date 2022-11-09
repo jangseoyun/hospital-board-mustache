@@ -73,10 +73,28 @@ public class ArticleController {
         return "redirect:/articles/list";
     }
 
-    //---------update one---------------
-    @PutMapping("/{id}")
-    public String updateOne(@PathVariable("id") Long id) {
-        return "";
+    //---------update form---------------
+    @GetMapping("/{id}/edit")
+    public String editForm(@PathVariable("id") Long id, Model model) {
+        log.info("update-form 요청 : {}", id);
+        Optional<Article> findOne = articleRepository.findById(id);
+        log.info("{}", findOne);
+        if (findOne.isEmpty()) {
+            return "error";
+        }
+
+        model.addAttribute("getContents", findOne.get());
+        return "articles/edit";
+    }
+
+    //---------update--------------------
+    @PutMapping("/{id}/update")
+    public String edit(ArticleDto articleDto, Model model) {
+        log.info("article dto : {}", articleDto);
+        Article article = articleDto.toEntityAll();
+        Article update = articleRepository.save(article);
+        model.addAttribute("articleUpdateResult", update);
+        return "redirect:/articles/show";
     }
 
 }
