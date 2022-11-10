@@ -25,7 +25,7 @@ ENTRYPOINT [                                                \
    "-jar",                                                 \
    "-Djava.security.egd=file:/dev/./urandom",              \
    "-Dsun.net.inetaddr.ttl=0",                             \
-   "bbs5-0.0.1-SNAPSHOT.jar"              \
+   "mustache-0.0.1-SNAPSHOT.jar"              \
 ]
 
 
