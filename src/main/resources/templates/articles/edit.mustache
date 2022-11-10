@@ -2,7 +2,7 @@
     <div id="wrap">
     {{>layouts/header}}
         {{#getContents}}
-        <form class="container" action="/articles/{{id}}/update" method="post">
+        <form class="container" action="/articles/update" method="post">
             <input type="hidden" name="id" value="{{id}}">
 
             <div class="mb-3">

@@ -86,7 +86,7 @@ public class ArticleController {
     }
 
     //---------update--------------------
-    @PostMapping("/{id}/update")
+    @PostMapping("/update")
     public String edit(ArticleDto articleDto, Model model) {
         log.info("article dto : {}", articleDto);
         Article article = articleDto.toEntityAll();
