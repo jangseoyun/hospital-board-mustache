@@ -20,11 +20,12 @@ EXPOSE 8080
 
 # root 대신 nobody 권한으로 실행 ** 마지막줄 수정
 USER nobody
-ENTRYPOINT [
-   "java",
-   "-jar",
-   "-Djava.security.egd=file:/dev/./urandom",
-   "-Dsun.net.inetaddr.ttl=0",
-   "mustache-0.0.1-SNAPSHOT.jar"
+ENTRYPOINT [                                                \
+   "java",                                                 \
+   "-jar",                                                 \
+   "-Djava.security.egd=file:/dev/./urandom",              \
+   "-Dsun.net.inetaddr.ttl=0",                             \
+   "bbs5-0.0.1-SNAPSHOT.jar"              \
 ]
+
 
